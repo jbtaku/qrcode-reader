@@ -4,18 +4,19 @@ import { useState } from "react";
 import { useZxing } from "react-zxing";
 
 function QrCodeReader() {
-  const [path, setPath] = useState<string>();
+  const [data, setData] = useState<string>();
   const { ref } = useZxing({
     onDecodeResult(result) {
-      setPath(result.getText());
+      setData(result.getText());
     },
   });
   return (
     <div>
       <video ref={ref} />
-      <p>URL:{path}</p>
+      <p>result:{data}</p>
     </div>
   );
 }
 
 export default QrCodeReader;
+
